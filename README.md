@@ -56,3 +56,25 @@ npm i -g http-server -p 8000
 
 http://localhost:8000
 
+
+起動時に初回表示する動画IDを記入
+
+```js
+videoId: '',　// 起動時に表示する動画
+
+```
+
+
+コメントの情報をWebsocketで取得する。内容の振り分けなどはこのあたりで記入しても良いし、サーバ側で送っている所で分岐しても良い
+```js
+
+var exampleSocket = new WebSocket("ws://localhost:8080", "protocolOne");
+exampleSocket.onmessage =  (event) => {
+    console.log(event.data);
+    player.clearVideo()
+    player.loadVideoById({
+        videoId: "", // コメントの内容からVideoIDを挿入
+        startSeconds: 0,
+    })
+}
+```
